@@ -17,6 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const { SearchBar } = Search;
 
@@ -97,7 +98,13 @@ const defaultSorted = [
 	},
 ];
 
-export const TableComponent = ({ users }) => {
+const mapStateToProps = (state) => {
+	return {
+		users: state.users.users,
+	};
+};
+
+const TableComponent = ({ users }) => {
 	return (
 		<Container>
 			<ToolkitProvider
@@ -147,3 +154,5 @@ export const TableComponent = ({ users }) => {
 		</Container>
 	);
 };
+
+export default connect(mapStateToProps, null)(TableComponent);
