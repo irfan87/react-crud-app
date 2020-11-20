@@ -17,7 +17,7 @@ const JumbotronComponent = ({ title }) => {
 					<hr className="my-2" />
 					<p>With Redux, we can build any app that needs Redux.</p>
 					<p className="lead">
-						<Button color="primary">
+						<Button color="info">
 							<span>{element}</span> Learn More
 						</Button>
 					</p>
