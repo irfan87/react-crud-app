@@ -8,9 +8,15 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Button, Container } from "reactstrap";
-import { faEdit, faInfo, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Button, Col, Container, Row } from "reactstrap";
+import {
+	faEdit,
+	faInfo,
+	faTrash,
+	faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const { SearchBar } = Search;
 
@@ -59,20 +65,20 @@ const columns = [
 		formatter: (rowContent, row) => {
 			return (
 				<div>
-					<a href={`/details/${row.id}`}>
+					<Link to={`/details/${row.id}`}>
 						<Button color="success" className="mr-2">
 							<span>
 								<FontAwesomeIcon icon={faInfo} />
 							</span>
 						</Button>
-					</a>
-					<a href={`/edit/${row.id}`}>
+					</Link>
+					<Link to={`/edit/${row.id}`}>
 						<Button color="warning" className="mr-2">
 							<span>
 								<FontAwesomeIcon icon={faEdit} />
 							</span>
 						</Button>
-					</a>
+					</Link>
 					<Button color="danger" className="mr-2">
 						<span>
 							<FontAwesomeIcon icon={faTrash} />
@@ -104,9 +110,24 @@ export const TableComponent = ({ users }) => {
 			>
 				{(props) => (
 					<div>
-						<div className="float-right">
-							<SearchBar {...props.searchProps} placeholder="Search..." />
-						</div>
+						<Row>
+							<Col>
+								<Link to={`/create`}>
+									<Button color="primary" className="mr-2">
+										<span>
+											<FontAwesomeIcon icon={faUserPlus} />
+										</span>{" "}
+										New User
+									</Button>
+								</Link>
+							</Col>
+							<Col>
+								<div className="float-right">
+									<SearchBar {...props.searchProps} placeholder="Search..." />
+								</div>
+							</Col>
+						</Row>
+
 						<BootstrapTable
 							{...props.baseProps}
 							pagination={paginationFactory()}
